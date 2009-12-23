@@ -22,6 +22,13 @@ if [ ! -d ~/$1 ]; then
 fi
 }
 
+# zsh
+echo "set symlink: .zshrc"
+if [ -e ~/.zshrc ]; then
+    rm ~/.zshrc
+fi
+ln -s ${SELF_DIR}/.zshrc ~
+
 # screen
 set_symlink .screenrc
 
