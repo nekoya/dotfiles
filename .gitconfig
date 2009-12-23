@@ -1,0 +1,13 @@
+[user]
+    name = Ryo Miyake
+    email = ryo.studiom@gmail.com
+[color]
+    ui = auto
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+[branch "master"]
+    merge = refs/heads/master
+    remote = origin
