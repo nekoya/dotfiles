@@ -1,5 +1,6 @@
 #!/bin/sh
-SELF_DIR=`dirname $0`
+D=`dirname $0`
+SELF_DIR=`cd $D;pwd`
 
 function set_symlink() {
 if [ ! -e ~/$1 ]; then
