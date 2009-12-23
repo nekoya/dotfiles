@@ -1,0 +1,274 @@
+##############################################################################
+# オプション
+###############################################################################
+$pageup_length = 15                                 # ページアップ、ダウンの時のカーソル移動の大きさ
+$option_scroll_type = "original"                    # スクロールのタイプ オリジナル
+#$option_scroll_type = "fdclone"                    # fdclone風スクロール
+#$option_scroll_type = "afu"                        # あふ風のスクロール(カーソル上下によるスクロール時端末の描写スピードを相当要求します)
+$option_afu_copy = true                             # あふ風のコピーをするか
+$option_left_right_dir_up = true                    # 左右キーで親ディレクトリに移動するか
+$option_enter_cursor_down = false                   # ENTERによるコマンド実行で実行後カーソルを下げるか
+
+option_individual_cursor true                       # 左右のディレクトリで個別にカーソルを保持するか
+option_check_delete_file true                       # ファイルを削除する時に確認するか
+option_check_copy_file true                         # ファイルをコピーする時に確認するか
+option_check_exit true                              # mfiler2を終了する時に確認するか
+option_remain_cursor false                          # 各ディレクトリでカーソル位置を保持するか
+option_auto_rehash true                             # コマンドラインに入る時に自動的に$PATHを走査してプログラム名をリハッシュするか（重くなります)
+option_remain_marks false                           # コマンド実行後マークを保持するか
+option_read_dir_history true                        # mfiler2起動時にディレクトリ情報を読み込むか
+option_trashbox_path ENV["HOME"] + "/mtrashbox"     # ごみ箱のディレクトリ
+option_extension_icase true                         # キーバインドで拡張子の大文字小文字を区別するか
+option_gnu_screen true                              # GNU screen上で起動しているか
+option_xterm false                                  # 他端末実行機能をオンにするか
+
+if `uname -s`.index("Darwin")
+    $sisearch_except_dir = ["/automount/", "/Network/", "/Volumes/"]          # スーパーインクリメンタルサーチで検索しないディレクトリ
+else
+    $sisearch_except_dir = ["/media/", "/mnt/"]          # スーパーインクリメンタルサーチで検索しないディレクトリ
+end
+
+sisearch_migemo false                               # スーパーインクリメンタルサーチでmigemoを有効にするかどうか
+
+sisearch_candidate_max_ascii 17                     # スーパーインクリメンタルサーチのASCIIファイル名の表示する候補数
+sisearch_candidate_max_migemo 1                     # スーパーインクリメンタルサーチのmigemoファイル名の表示する候補数
+
+
+history_size 10000                                  # コマンドラインヒストリで保存するコマンド数
+
+set_change_terminal_title false                     # 端末のタイトルを変えるかどうか
+set_isearch_option1 true                            # 先頭インクリメンタルサーチが失敗したら部分一致インクリメンタルサーチを試す
+
+set_menu_scroll_cycle false                         # メニューのスクロールを循環させるか
+
+$option_tab_remain_dir = true                       # tabによる１画面から２画面移行時ディレクトリ位置を保存するかどうか(falseなら毎回カレントディレクトリから始まる)
+
+set_cmdline_escape_key true                         # コマンドラインでエスケープキーによるコマンドライン終了を有効にするかどうか
+
+set_escape_wait 0                                   # エスケープキーを押してからこの値分次の入力を待つ(ex. Meta-fでEscapeを押してから次のfを押すまでの待ち時間)
+
+### カラー ###
+# 使用できるカラー MA_WHITE, MA_BLUE, MA_CYAN, MA_GREEN, MA_YELLOW, MA_MAGENTA, MA_RED
+
+set_view_bold_exe true                  # 実行ファイルを太字にするか
+set_view_bold_dir true                  # ディレクトリを太字にするか
+set_view_color_mark MA_YELLOW           # マークファイルのカラー
+set_view_color_dir MA_CYAN              # ディレクトリのカラー
+set_view_color_link MA_MAGENTA          # リンクのカラー
+
+if `uname -s`.index("CYGWIN")
+    set_view_color_exe MA_WHITE             # 実行ファイルのカラー
+    option_visible_fname_execute false      # 実行ファイルに星印をつけるかどうか
+    option_refresh false                    # X端末機能や他端末実行機能でディスクの再読み込みを行うかどうか
+else
+    set_view_color_exe MA_RED               # 実行ファイルのカラー                       
+    option_visible_fname_execute true      # 実行ファイルに星印をつけるかどうか
+    option_refresh true                    # X端末機能や他端末実行機能でディスクの再読み込みを行うかどうか
+end
+
+### 漢字コード ###
+if `uname -s`.index("CYGWIN") || ENV['LANG'] == "ja_JP.SJIS" || ENV['LANG'] == "ja_JP.sjis"
+    set_kanjicode "sjis"
+elsif ENV['LANG'] != nil && (ENV['LANG'].index("utf") || ENV['LANG'].index("UTF")) || `uname -s`.index("Darwin")
+    set_kanjicode "utf8"
+else
+    set_kanjicode "eucjp"
+end
+
+if `uname -s`.index("Darwin")
+    set_kanjicode_filename 'utf8-mac'        # OSXは端末のエンコードはutf8だがファイル名のエンコードはutf8-mac
+end
+
+set_shell(ENV['SHELL'], `which #{ENV['SHELL']}`.chomp, "-c")       # 使用する外部シェル %Sが指定された場合、GNU screen上、他端末実行機能で使われます
+
+### 他端末実行機能で使用するX端末の設定 ###
+# set_xterm X端末のプログラム名, タイトルをつける引数, コマンドを実行する引数, その他の引数, Gnome Terminalなら1(Gnome Terminalは引数の処理が特殊なので１が必要)
+if `uname -s`.index("CYGWIN")
+    set_xterm("ck", "-title", "-e", "", 0)
+elsif `which gnome-terminal 2> /dev/null` != ""
+    set_xterm("gnome-terminal", "-t", "-e", "", 1)
+elsif `which konsole 2> /dev/null` != ""
+    set_xterm("konsole", "-T", "-e", "", 0)
+elsif `which mlterm 2> /dev/null` != ""
+    set_xterm("mlterm", "-T", "-e", "", 0)
+elsif `which rxvt 2> /dev/null` != ""
+    set_xterm("rxvt", "-T", "-e", "", 0)
+elsif `which Eterm 2> /dev/null` != ""
+    set_xterm("Eterm", "-T", "-e", "", 0)
+elsif `which aterm 2> /dev/null` != ""
+    set_xterm("aterm", "-T", "-e", "", 0)
+elsif `which kterm 2> /dev/null` != ""
+    set_xterm("kterm", "-T", "-e", "", 0)
+else
+    set_xterm("xterm", "-T", "-e", "", 0)
+end
+
+###############################################################################
+# ファイラー画面のプロンプトカスタマイズ (返された文字列が表示されます)
+###############################################################################
+def cmdline_prompt()
+    return "Minnu's Filer2 version #{version()} (c)D.Minato 2004-2007 <?> for help"
+end
+
+###############################################################################
+# ファイルの種類ごとに表示カラーを変える
+###############################################################################
+$file_color = [
+    [ /.+\.(zip|gz|tgz|tar|bz2|lzh)$/, MA_GREEN ],
+    [ /.+\.exe$/, MA_RED ]
+]
+
+###############################################################################
+# キーバインド
+###############################################################################
+#keycommand メタキー(ALTキー), 設定するキーコード, 拡張子, Rubyコマンド
+
+# 拡張子は"*"で拡張子を指定しない、".c" 拡張子cのファイル ".dir"だとディレクトリ、".execute"で実行ファイル ".link"でsymbolic link、".mark"でマークファイル、".mark-c"で拡張子cのマークファイル時 "fname" fnameのファイル名のファイル時
+
+# マクロは
+# %f カーソル下のファイル名 %F カーソル下のファイル名（フルパス）%x 拡張子名 %X 拡張子以外 
+
+# %d アクティブなディレクトリ %d2 非アクティブなディレクトリ
+# %D アクティブなディレクトリフルパス %D2 非アクティブなディレクトリフルパス
+
+# %m アクティブなディレクトリでマークされているファイルの羅列。マークしていない場合はカーソル下のファイル名
+# %m2 非アクティブなディレクトリでマークされているファイルの羅列
+# %M マークしているファイルの羅列。フルパス
+# %M2 非アクティブなディレクトリでマークしているファイルの羅列。フルパス
+
+# %r コマンドがrubyに渡される
+# %s mfiler上のsystem関数に渡される
+# %S 外部シェルに渡される
+# %t 他端末で実行される
+# %q コマンド実行後待たない
+# %Q コマンド実行後待たない。cursesを終了せずに実行する(画面を再描写しない)
+# %o コマンドを実行してもマークをクリアしない
+
+# ruby mfiler2 API
+
+# shell("コマンド", "タイトル") コマンドを実行する
+# cmdline("コマンド", カーソル位置) コマンドラインに移行する カーソル位置は0で末尾, -1で末尾からひとつ前 1で先頭。設定されていればコマンド実行後一つカーソルを下げる
+# cmdline_c("コマンド", "カーソル位置", "コマンド実行後実行するrubyコマンド")
+
+# dir_move(ディレクトリ番号, "ディレクトリ") ディレクトリに移動 ディレクトリ番号は0で左ディレクトリ 1で右ディレクトリ アクティブなディレクトリの番号はadir(), アクティブでないディレクトリの番号はsdir()で得られます
+
+# defmenu メニューの定義
+# menu メニューを開く
+
+# 詳しくはマニュアルを見てください
+
+require "keybind_fdlike.rb"         # 一般的なファイラーのキーバインドをロード
+#require "keybind_mfiler2.rb"         # mfiler2(オリジナル)のキーバインドをロード
+
+#keycommand NOMETA, KEY_e,      "*",     "shell('%Q gvim %f &', '%f')"
+#keycommand NOMETA, KEY_F4,     "*",     "shell('%Q gvim %f &', '%f')"
+
+#keycommand NOMETA, KEY_ENTER,  ".c",          "cmdline('gcc -o test %f', 0)"
+#keycommand NOMETA, KEY_ENTER,  ".mark-c",     "cmdline('gcc -o test %m', 0)"
+#keycommand NOMETA, KEY_ENTER,  "makefile",   "cmdline('%q%S make -f %f  2>&1| $PAGER', -13)"
+
+###############################################################################
+# ENTERによる拡張子別コマンド実行の設定
+###############################################################################
+
+keycommand NOMETA, KEY_ENTER, ".sh",  "cmdline('/bin/sh %f ', 0)"
+keycommand NOMETA, KEY_ENTER, ".pl",  "cmdline('perl %f ', 0)"
+keycommand NOMETA, KEY_ENTER, ".py",  "cmdline('python %f ', 0)"
+keycommand NOMETA, KEY_ENTER, ".rb",  "cmdline('ruby %f ', 0)"
+keycommand NOMETA, KEY_ENTER, ".clas","cmdline('java %X ', 0)"
+
+defmenu("playlist",
+    "(1) relative path", KEY_1, "playlist_start cursor_path",
+    "(2) absolute path", KEY_2, "playlist_start2 cursor_path"
+)
+
+keycommand NOMETA, KEY_ENTER, ".list", "menu('playlist')"
+
+### Mac OS X #################################################################
+if `uname -s`.index("Darwin")
+    keycommand NOMETA, KEY_ENTER, "configure",  "cmdline('./configure ', 0)"
+
+    defmenu("run_or_insert_directory",
+        "(r)un app", KEY_r, "shell('%Q open %f', '%f')",
+        "(i)nsert directory", KEY_i, "dir_move(adir(), cursor_name())"
+    )
+    keycommand NOMETA, KEY_ENTER, ".app",           "menu('run_or_insert_directory')"
+    keycommand NOMETA, KEY_ENTER, ".xcodeproj",     "menu('run_or_insert_directory')"
+
+
+    keycommand NOMETA, KEY_ENTER, "*",          "cmdline('%Q open  %f', 9)"
+
+### cygwin ###################################################################
+elsif `uname -s`.index("CYGWIN")
+    keycommand NOMETA, KEY_ENTER, "configure",  "cmdline('./configure ', 0)"
+    
+    #keycommand NOMETA, KEY_ENTER, ".jpg",  "key_enter_win_program2('gv')"
+    
+    keycommand NOMETA, KEY_ENTER, ".mark-mp3",  "key_enter_mark_win_program('wmplayer /Add')"
+    keycommand NOMETA, KEY_ENTER, ".mark-wav",  "key_enter_mark_win_program('wmplayer /Add')"
+    keycommand NOMETA, KEY_ENTER, ".mark-mid",  "key_enter_mark_win_program('wmplayer /Add')"
+    keycommand NOMETA, KEY_ENTER, ".mark-mpg",  "key_enter_mark_win_program('wmplayer /Add')"
+    keycommand NOMETA, KEY_ENTER, ".mark-mpeg", "key_enter_mark_win_program('wmplayer /Add')"
+    
+    keycommand NOMETA, KEY_ENTER, ".mark-doc",  "key_enter_mark_win_program('WINWORD')"
+
+    keycommand NOMETA, KEY_ENTER, ".exe",       "cmdline('%Q ./%f  &', -2)"
+    keycommand NOMETA, KEY_ENTER, "*",          "shell('%Q cygstart %f > /dev/null 2> /dev/null', '%f'); enter_cursor_down()"
+    
+### unix #######################################################################
+else
+    keycommand NOMETA, KEY_ENTER, ".execute",   "cmdline('./%f ', 0)"
+    keycommand NOMETA, KEY_ENTER, "*",          "shell('%q $PAGER %f', '%f'); enter_cursor_down()"
+end
+
+###############################################################################
+# エイリアス（エイリアスはできるだけ大文字で設定することをおすすめします)
+###############################################################################
+#malias "エイリアス名", 引数の数, "コマンド"  #0, #1, #2,...,#9が引数に展開される
+
+#malias "L", 0, "| $PAGER"
+#malias "PSG", 1, "ps auxw | grep #0 | grep -v grep"
+
+###############################################################################
+# オリジナルコマンドの例(yで起動)
+###############################################################################
+
+#マークしたファイルのファイル名の先頭にソート順に2桁の番号を付ける
+def set_number_at_head()
+    if adir_mark().size() > 99          # adir_mark() --> マークしたファイル名の配列
+        return
+    end
+    
+    i = 1
+    adir_mark().each do |fname|           # マークしたファイル名がそれぞれfnameに入る
+        if i < 10                       # 0-9個目なら
+            File.rename(fname, "0" + i.to_s + fname)    # ファイル名を 0?fnameに改名
+        else
+            File.rename(fname, i.to_s + fname)          # ファイル名を ??fnameに改名
+        end
+        
+        i += 1
+    end
+
+    reread()            # ディスクの再読み込み
+end
+
+#マークしたファイルのファイル名の先頭の2桁の番号を消す
+def del_number_at_head()
+    adir_mark().each do |fname|
+        if fname[0] >= "0"[0] && fname[0] <= "9"[0] && fname[1] >= "0"[0] && fname[1] <= "9"[0]
+            File.rename(fname, fname[2..-1])
+        end
+    end
+
+    reread()
+end
+
+defmenu("my_commands",
+   "(1) set_number_at_head",  KEY_1, "set_number_at_head()",
+   "(2) del_number_at_head",  KEY_2, "del_number_at_head()"
+   );
+
+keycommand NOMETA, KEY_y,            "*",     "menu('my_commands')"
+
+require 'mint.rb'
