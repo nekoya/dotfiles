@@ -32,6 +32,9 @@ copy mint.rb
 # vim
 copy .vim
 make_dir .vimback
+if [ ! -e ~/.vimrc ]; then
+    ln -s ~/.vim/.vimrc ~
+fi
 
 # git
 set_symlink .gitconfig
