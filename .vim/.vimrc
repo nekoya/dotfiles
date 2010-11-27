@@ -164,6 +164,8 @@ nnoremap <silent> <Leader>r :<C-u>call ReloadFirefox()<CR>
 " ----------------------------------------
 augroup MyFileTypes
     autocmd!
+    autocmd BufNewFile,BufRead *.psgi setlocal filetype=perl
+    autocmd BufNewFile,BufRead *.pp   setlocal filetype=puppet
     autocmd BufNewFile,BufRead *.scss setlocal filetype=css
     autocmd BufNewFile,BufRead *.tt2  setlocal filetype=xhtml
     autocmd BufNewFile,BufRead *.tpl  setlocal filetype=xhtml
