@@ -48,6 +48,7 @@ set wildmode=list:full           " When more than one match, list all matches an
 set autoread                     " reload file when detect changed at other process
 set backup
 set backupdir=$HOME/.vimback     " backup dir
+set backupskip=/tmp/*,/private/tmp/*
 set directory=$HOME/.vimback     " swap file dir
 set fileencodings=utf-8,iso-2022-jp,cp932,eucjp-ms
 
