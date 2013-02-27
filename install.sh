@@ -2,21 +2,21 @@
 D=`dirname $0`
 SELF_DIR=`cd $D;pwd`
 
-function set_symlink() {
+set_symlink() {
 if [ ! -e ~/$1 ]; then
     echo "set symlink: $1"
     ln -s ${SELF_DIR}/$1 ~
 fi
 }
 
-function copy {
+copy() {
 if [ ! -e ~/$1 ]; then
     echo "copy: $1"
     cp -a ${SELF_DIR}/$1 ~
 fi
 }
 
-function make_dir {
+make_dir() {
 if [ ! -d ~/$1 ]; then
     echo "mkdir: $1"
     mkdir $1
