@@ -1,13 +1,6 @@
 package ;
-use strict;
-use warnings;
-use utf8;
+use Mouse;
 
-use base qw/Class::Accessor::Fast/;
-use Carp;
-
-sub  {
-    my ( $self ) = @_;
-}
-
+no Mouse;
+__PACKAGE__->meta->make_immutable;
 1;
