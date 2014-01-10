@@ -20,7 +20,7 @@ option_read_dir_history true                        # mfiler2起動時にディ�
 option_trashbox_path ENV["HOME"] + "/mtrashbox"     # ごみ箱のディレクトリ
 option_extension_icase true                         # キーバインドで拡張子の大文字小文字を区別するか
 option_gnu_screen true                              # GNU screen上で起動しているか
-option_xterm false                                  # 他端末実行機能をオンにするか
+option_xterm true                                   # 他端末実行機能をオンにするか
 
 if `uname -s`.index("Darwin")
     $sisearch_except_dir = ["/automount/", "/Network/", "/Volumes/"]          # スーパーインクリメンタルサーチで検索しないディレクトリ
