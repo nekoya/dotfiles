@@ -30,16 +30,12 @@ if [ -e ~/.zshrc ]; then
 fi
 ln -s ${SELF_DIR}/.zshrc ~
 
-# screen
-set_symlink .screenrc
-
 # mfiler2
 set_symlink .mfiler
 copy mint.rb
 
 # vim
 copy .vim
-make_dir .vimback
 if [ ! -e ~/.vimrc ]; then
     ln -s ~/.vim/.vimrc ~
 fi
@@ -52,4 +48,3 @@ copy .ssh
 
 # other directories
 make_dir src
-make_dir projects
