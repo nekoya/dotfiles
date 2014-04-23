@@ -94,7 +94,6 @@ endif
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle "nvie/vim-flake8"
 NeoBundle 'vim-scripts/YankRing.vim'
-NeoBundle 'vimtaku/hl_matchit.vim.git'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
