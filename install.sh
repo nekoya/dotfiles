@@ -43,6 +43,7 @@ if [ ! -e ~/.vimrc ]; then
 fi
 
 # git
+sudo install -m 0755 /usr/share/doc/git/contrib/diff-highlight/diff-highlight /usr/local/bin/
 set_symlink .gitconfig
 
 # ssh
