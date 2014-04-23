@@ -46,5 +46,8 @@ set_symlink .gitconfig
 # ssh
 copy .ssh
 
+# tmux
+set_symlink .tmux.conf
+
 # other directories
 make_dir src
