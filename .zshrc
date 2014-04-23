@@ -77,6 +77,14 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 
+##
+# common aliases
+#
+alias keys='ssh-add -l'
+alias gs='git status'
+alias gf='git diff'
+alias gc='git diff --cached'
+
 ## load user .zshrc configuration file
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
