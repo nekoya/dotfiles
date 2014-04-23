@@ -24,6 +24,7 @@ fi
 }
 
 # zsh
+curl -L http://install.ohmyz.sh | sh
 echo "set symlink: .zshrc"
 if [ -e ~/.zshrc ]; then
     rm ~/.zshrc
@@ -35,6 +36,7 @@ set_symlink .mfiler
 copy mint.rb
 
 # vim
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 copy .vim
 if [ ! -e ~/.vimrc ]; then
     ln -s ~/.vim/.vimrc ~
