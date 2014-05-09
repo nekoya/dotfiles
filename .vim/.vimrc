@@ -97,6 +97,7 @@ NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "Align"
