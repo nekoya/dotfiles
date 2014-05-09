@@ -49,6 +49,7 @@ source $ZSH/oh-my-zsh.sh
 ## LANG
 #
 export LANG=ja_JP.UTF-8
+export LC_ALL=en_US.UTF8
 
 # no beep sound
 #
