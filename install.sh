@@ -37,7 +37,7 @@ copy mint.rb
 
 # vim
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
-copy .vim
+cp -a ${SELF_DIR}/$1 ~
 if [ ! -e ~/.vimrc ]; then
     ln -s ~/.vim/.vimrc ~
 fi
