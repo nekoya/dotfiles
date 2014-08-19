@@ -273,6 +273,7 @@ nnoremap <Space>f  :VimFiler<CR>
 nnoremap <Space>F  :VimFilerExplorer<CR>
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = '\.pyc$'
+let g:vimfiler_safe_mode_by_default = 0
 
 " - unite.vim ----------------------------
 "let g:unite_enable_start_insert = 1
