@@ -85,6 +85,8 @@ alias keys='ssh-add -l'
 alias gs='git status'
 alias gf='git diff'
 alias gc='git diff --cached'
+alias gb='git branch --no-merge'
+alias gbr='git branch -r --no-merge'
 
 ## load user .zshrc configuration file
 #
