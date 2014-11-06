@@ -101,7 +101,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "Align"
-NeoBundle 'mkomitee/vim-gf-python'
+NeoBundle 'kana/vim-smartchr'
 
 filetype plugin indent on
 
@@ -266,7 +266,10 @@ let g:hl_matchit_hl_groupname = 'Title'
 let g:hl_matchit_allow_ft_regexp = 'html\|vim\|ruby\|sh'
 
 " - tagbar -------------------------------
+let g:tagbar_left = 1
 nnoremap <Space>t :TagbarToggle<CR>
+nnoremap <C-w>h <C-w>h :let g:tagbar_left=1<CR>
+nnoremap <C-w>l <C-w>l :let g:tagbar_left=0<CR>
 
 " - vimfiler -----------------------------
 nnoremap <Space>f  :VimFiler<CR>
@@ -323,5 +326,5 @@ augroup END
 let g:quickrun_config = {}
 "let g:quickrun_config._ = {'runner': 'vimproc', 'outputter/buffer/split' : ':botright 16sp'}
 let g:quickrun_config._ = {'outputter/buffer/split' : ':botright 20sp'}
-let g:quickrun_config['python.unit'] = {'command': 'nosetests', 'cmdopt': '-s -vv'}
+let g:quickrun_config['python.unit'] = {'command': 'py.test', 'cmdopt': '-sv'}
 nnoremap <Space>q :QuickRun<CR>
