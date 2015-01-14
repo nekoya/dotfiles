@@ -104,6 +104,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle "Align"
 NeoBundle 'kana/vim-smartchr'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 filetype plugin indent on
 
