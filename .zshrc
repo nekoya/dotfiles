@@ -49,7 +49,7 @@ source $ZSH/oh-my-zsh.sh
 ## LANG
 #
 export LANG=ja_JP.UTF-8
-export LC_ALL=en_US.UTF8
+#export LC_ALL=en_US.UTF8
 
 # no beep sound
 #
@@ -81,12 +81,18 @@ bindkey "^n" history-beginning-search-forward-end
 ##
 # common aliases
 #
+alias scr='screen -R'
+alias tmx='tmux a || tmux'
 alias keys='ssh-add -l'
 alias gs='git status'
 alias gf='git diff'
 alias gc='git diff --cached'
 alias gb='git branch --no-merge'
 alias gbr='git branch -r --no-merge'
+
+# virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PYTHONDONTWRITEBYTECODE=1
 
 ## load user .zshrc configuration file
 #
