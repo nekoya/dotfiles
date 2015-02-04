@@ -90,6 +90,10 @@ alias gc='git diff --cached'
 alias gb='git branch --no-merge'
 alias gbr='git branch -r --no-merge'
 
+alias vg='vagrant'
+alias vgs='vagrant ssh'
+alias vgp='vagrant provision'
+
 # virtualenv
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHONDONTWRITEBYTECODE=1
