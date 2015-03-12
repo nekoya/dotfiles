@@ -97,7 +97,6 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle "nvie/vim-flake8"
 NeoBundle 'vim-scripts/YankRing.vim'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -105,6 +104,12 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle "Align"
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'ekalinin/Dockerfile.vim'
+
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+        let g:make = 'make'
+endif
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
 
 filetype plugin indent on
 
