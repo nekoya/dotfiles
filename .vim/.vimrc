@@ -102,17 +102,17 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundleFetch "nvie/vim-flake8"
-NeoBundleFetch 'vim-scripts/YankRing.vim'
-NeoBundleFetch 'thinca/vim-quickrun'
-NeoBundleFetch 'Shougo/unite.vim'
-NeoBundleFetch 'Shougo/neomru.vim'
-NeoBundleFetch 'Shougo/vimfiler'
-NeoBundleFetch 'majutsushi/tagbar'
-NeoBundleFetch "Align"
-NeoBundleFetch 'kana/vim-smartchr'
-NeoBundleFetch 'ekalinin/Dockerfile.vim'
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle "nvie/vim-flake8"
+NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle "Align"
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'ekalinin/Dockerfile.vim'
 
 let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
