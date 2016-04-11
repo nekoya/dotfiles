@@ -202,6 +202,9 @@ augroup MyFileTypes
     autocmd BufNewFile,BufRead *.less setlocal filetype=css
     autocmd BufNewFile,BufRead *.html setlocal filetype=xhtml  " if file type is html, omni complete as upper case
     autocmd BufNewFile,BufRead keepalived.conf setlocal filetype=keepalived
+    autocmd BufNewFile,BufRead */keepalived/*.conf setlocal filetype=keepalived
+    autocmd BufNewFile,BufRead */nginx/*.conf setlocal filetype=nginx
+    autocmd BufNewFile,BufRead */crontab/* setlocal filetype=crontab
 augroup END
 
 augroup Templates
